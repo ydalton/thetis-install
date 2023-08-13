@@ -68,8 +68,10 @@ mv -v Thetis.desktop ~/.local/share/applications
 winetricks --force dotnet48
 
 wget "https://raw.githubusercontent.com/TAPR/OpenHPSDR-Thetis/master/Project Files/Source/Thetis-Installer/MeterSkinInstaller.exe"
+wget "https://raw.githubusercontent.com/TAPR/OpenHPSDR-Thetis/master/Skins/OpenHPSDR_Skins.exe"
 echo "Installing skins..."
 wine MeterSkinInstaller.exe
+wine OpenHPSDR_Skins.exe
 
 wine C:\\Program\ Files\\OpenHPSDR\\Thetis\\Thetis.exe
 
