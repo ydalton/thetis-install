@@ -1,0 +1,63 @@
+#+title: (UPDATED )How to install Thetis on (Arch) Linux
+
+WARNING: Do not use the install script in this repo. It is for expert users and
+doesn't even work all that well. I used this before I was able to patch the
+install file.
+
+This guide describes how to install OpenHPSDR Thetis on Linux, specifically Arch
+Linux. Wine for this purpose works best on Arch Linux, at least as far as I can
+tell. I have tested it on Linux Mint 21.2, but it does not run great. In my
+experience, running Thetis through Wine on Arch Linux works the best. This guide
+uses Arch Linux, but you can adapt the commands to any Linux distribution.
+* Prerequisites
+For the installation we need the following packages:
+- ~wine~
+- ~winetricks~
+By default, Arch Linux does not enable the multilib repository that contains
+these packages. In order to enable it, you need to edit the ~/etc/pacman.conf~
+file. In this tutorial we will be using ~nano~.
+#+begin_example
+sudo nano /etc/pacman.conf
+#+end_example
+Uncomment these lines (i.e. remove the ~#~ symbol), in my case near the bottom
+of the file:
+#+begin_example
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+#+end_example
+Then update the package repository with this command:
+#+begin_example
+sudo pacman -Syu
+#+end_example
+After enabling the multilib repository, Install these with ~pacman~ with the
+following command:
+#+begin_example
+sudo pacman -S wine winetricks
+#+end_example
+After that command finishes, you need to install the required dependency for
+Thetis, .NET. Install that with this command
+#+begin_example
+winetricks dotnet48
+#+end_example
+Then a few installers will pop up. Go through the install like you would with a
+normal Windows program.
+
+* Installing Thetis
+Now we are ready to install Thetis on the system.
+
+Go to my GitHub repo containing my patched installer, [[https://github.com/ydalton/OpenHPSDR-Thetis/releases/tag/v2.10.0.0][at this link]]. Download it,
+and make notice of where you downloaded it. In your terminal, navigate to that
+location; for example, if you downloaded it in your Downloads folder, navigate
+to the Downloads folder with this command:
+#+begin_example
+cd ~/Downloads
+#+end_example
+Type ~ls~ to verify the installer is in the current directory. Then, to run the
+installer, type this command
+#+begin_example
+wine Thetis-v2.10.0.x64.msi
+#+end_example
+Go through the install like you would on Windows. Now in the applications menu,
+the Thetis shortcut should pop up, and click on it. Now it will be calculating
+the Fourier transforms (wisdom). Give it a good while, it does take some time.
+After that is complete, you should have Thetis installed. Congratulations!
